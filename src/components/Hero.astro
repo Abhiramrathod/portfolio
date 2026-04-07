@@ -1,0 +1,116 @@
+---
+
+---
+
+<section
+  id="hero"
+  class="relative flex min-h-screen items-center overflow-hidden section-padding"
+>
+  <div class="absolute inset-0 -z-10">
+    <div class="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-primary/10 blur-[120px]"></div>
+    <div class="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-accent/5 blur-[100px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(124,58,237,0.05)_0%,transparent_70%)]"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+    <div class="order-2 lg:order-1">
+      <p
+        id="hero-greeting"
+        class="mb-4 font-script text-xl text-primary-light opacity-0"
+      >
+        Hi there! My name is
+      </p>
+      <h1
+        id="hero-name"
+        class="mb-4 font-display text-5xl font-bold leading-tight text-white opacity-0 md:text-6xl lg:text-7xl"
+      >
+        Abhiram <span class="gradient-text">Rathod</span>.
+      </h1>
+      <h2
+        id="hero-title"
+        class="mb-6 font-display text-2xl font-medium text-slate-400 md:text-3xl opacity-0"
+      >
+        <span class="text-primary-light">Software Developer</span> at Amdocs
+      </h2>
+      <p
+        id="hero-desc"
+        class="mb-8 max-w-lg text-lg leading-relaxed text-slate-400 opacity-0"
+      >
+        Building robust, distributed systems with Java &amp; Spring Boot.
+        NIT Trichy graduate passionate about solving real-world problems
+        through clean, scalable, and efficient code.
+      </p>
+      <div id="hero-cta" class="flex flex-wrap gap-4 opacity-0">
+        <a
+          href="#projects"
+          class="group relative overflow-hidden rounded-full bg-primary px-8 py-3.5 font-medium text-white transition-all hover:shadow-lg hover:shadow-primary/25"
+          data-hover
+        >
+          <span class="relative z-10">View My Work</span>
+          <div class="absolute inset-0 -translate-x-full bg-primary-dark transition-transform duration-300 group-hover:translate-x-0"></div>
+        </a>
+        <a
+          href="#contact"
+          class="rounded-full border border-surface-300 px-8 py-3.5 font-medium text-slate-300 transition-all hover:border-primary hover:text-primary"
+          data-hover
+        >
+          Get In Touch
+        </a>
+      </div>
+    </div>
+
+    <div class="order-1 flex justify-center lg:order-2 lg:justify-end">
+      <div id="hero-avatar" class="relative opacity-0">
+        <div class="relative h-72 w-72 md:h-96 md:w-96">
+          <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary via-primary-dark to-accent p-1">
+            <img
+              src="/photo.png"
+              alt="Abhiram Rathod"
+              class="h-full w-full rounded-full object-cover"
+              width="384"
+              height="384"
+            />
+          </div>
+          <div class="absolute -inset-4 -z-10 animate-pulse-slow rounded-full bg-primary/20 blur-2xl"></div>
+        </div>
+
+        <div class="absolute -right-4 top-8 animate-float rounded-xl glass-card px-4 py-2 text-sm">
+          <span class="text-accent">&#9679;</span> Software Developer
+        </div>
+        <div class="absolute -left-4 bottom-12 animate-float rounded-xl glass-card px-4 py-2 text-sm" style="animation-delay: 2s;">
+          <span class="text-primary-light">&#60;/&#62;</span> NIT Trichy '24
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a
+    href="#about"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 text-slate-400 transition-colors hover:text-primary"
+    data-hover
+    aria-label="Scroll down"
+  >
+    <div class="flex flex-col items-center gap-2">
+      <span class="text-xs uppercase tracking-widest">Scroll</span>
+      <div class="h-10 w-6 rounded-full border-2 border-current p-1">
+        <div class="mx-auto h-2 w-1 animate-bounce rounded-full bg-current"></div>
+      </div>
+    </div>
+  </a>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+
+  const tl = gsap.timeline({ delay: 0.3 });
+
+  tl.to("#hero-greeting", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" })
+    .to("#hero-name", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
+    .to("#hero-title", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
+    .to("#hero-desc", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
+    .to("#hero-cta", { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
+    .to("#hero-avatar", { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.7)" }, "-=0.6");
+
+  gsap.set(["#hero-greeting", "#hero-name", "#hero-title", "#hero-desc", "#hero-cta"], { y: 30 });
+  gsap.set("#hero-avatar", { scale: 0.8 });
+</script>

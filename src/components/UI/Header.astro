@@ -1,0 +1,127 @@
+---
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Experience", href: "#experience" },
+  { label: "Skills", href: "#skills" },
+  { label: "Certifications", href: "#certifications" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+];
+---
+
+<header
+  id="main-header"
+  class="fixed top-0 left-0 z-50 w-full transition-all duration-300"
+>
+  <nav class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
+    <a
+      href="#"
+      class="font-display text-2xl font-bold text-white transition-colors hover:text-primary"
+      data-hover
+    >
+      &lt;AR /&gt;
+    </a>
+
+    <ul class="hidden items-center gap-8 lg:flex">
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="group relative font-medium text-slate-300 transition-colors hover:text-white"
+              data-hover
+            >
+              {link.label}
+              <span class="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          class="rounded-full border border-primary px-5 py-2 text-sm font-medium text-primary transition-all hover:bg-primary hover:text-white"
+          data-hover
+        >
+          Resume
+        </a>
+      </li>
+    </ul>
+
+    <button
+      id="mobile-menu-btn"
+      class="relative z-50 flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden"
+      aria-label="Toggle menu"
+      data-hover
+    >
+      <span class="menu-line h-0.5 w-6 rounded bg-white transition-all duration-300"></span>
+      <span class="menu-line h-0.5 w-6 rounded bg-white transition-all duration-300"></span>
+      <span class="menu-line h-0.5 w-4 rounded bg-white transition-all duration-300 self-end"></span>
+    </button>
+  </nav>
+
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 z-40 flex translate-x-full flex-col items-center justify-center gap-8 bg-surface/95 backdrop-blur-lg transition-transform duration-500 lg:hidden"
+  >
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-nav-link font-display text-3xl font-semibold text-white transition-colors hover:text-primary"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+    <a
+      href="/resume.pdf"
+      target="_blank"
+      class="mt-4 rounded-full border-2 border-primary px-8 py-3 text-lg font-medium text-primary transition-all hover:bg-primary hover:text-white"
+    >
+      Resume
+    </a>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById("main-header")!;
+  const menuBtn = document.getElementById("mobile-menu-btn")!;
+  const mobileMenu = document.getElementById("mobile-menu")!;
+  const menuLines = menuBtn.querySelectorAll(".menu-line");
+  let isMenuOpen = false;
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("bg-surface/80", "backdrop-blur-lg", "shadow-lg", "shadow-primary/5");
+    } else {
+      header.classList.remove("bg-surface/80", "backdrop-blur-lg", "shadow-lg", "shadow-primary/5");
+    }
+  });
+
+  menuBtn.addEventListener("click", () => {
+    isMenuOpen = !isMenuOpen;
+    if (isMenuOpen) {
+      mobileMenu.classList.remove("translate-x-full");
+      menuLines[0].classList.add("translate-y-2", "rotate-45");
+      menuLines[1].classList.add("opacity-0");
+      menuLines[2].classList.add("-translate-y-2", "-rotate-45", "w-6");
+    } else {
+      mobileMenu.classList.add("translate-x-full");
+      menuLines[0].classList.remove("translate-y-2", "rotate-45");
+      menuLines[1].classList.remove("opacity-0");
+      menuLines[2].classList.remove("-translate-y-2", "-rotate-45", "w-6");
+    }
+  });
+
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      isMenuOpen = false;
+      mobileMenu.classList.add("translate-x-full");
+      menuLines[0].classList.remove("translate-y-2", "rotate-45");
+      menuLines[1].classList.remove("opacity-0");
+      menuLines[2].classList.remove("-translate-y-2", "-rotate-45", "w-6");
+    });
+  });
+</script>

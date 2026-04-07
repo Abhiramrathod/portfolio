@@ -1,0 +1,162 @@
+---
+import { SEO } from "astro-seo";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Abhiram Rathod | Software Developer",
+  description = "Software Developer at Amdocs | NIT Trichy '24 | Java, Spring Boot, Kafka, Microservices",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: "/og-image.png",
+        },
+      }}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="cursor-glow" class="pointer-events-none fixed z-[9999] hidden md:block">
+      <div class="h-5 w-5 rounded-full border-2 border-primary transition-transform duration-150 ease-out"></div>
+    </div>
+
+    <slot />
+
+    <script>
+      import { gsap } from "gsap";
+      import { ScrollTrigger } from "gsap/ScrollTrigger";
+      import Lenis from "lenis";
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      });
+
+      lenis.on("scroll", ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+      gsap.ticker.lagSmoothing(0);
+
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", (e) => {
+          e.preventDefault();
+          const target = document.querySelector(
+            (anchor as HTMLAnchorElement).getAttribute("href")!
+          );
+          if (target) lenis.scrollTo(target as HTMLElement, { offset: -80 });
+        });
+      });
+
+      const cursor = document.getElementById("cursor-glow");
+      if (cursor) {
+        const cursorInner = cursor.firstElementChild as HTMLElement;
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener("mousemove", (e) => {
+          mouseX = e.clientX;
+          mouseY = e.clientY;
+        });
+
+        gsap.ticker.add(() => {
+          gsap.set(cursor, {
+            x: mouseX - 10,
+            y: mouseY - 10,
+          });
+        });
+
+        document.querySelectorAll("a, button, [data-hover]").forEach((el) => {
+          el.addEventListener("mouseenter", () => {
+            gsap.to(cursorInner, { scale: 2.5, duration: 0.3, borderColor: "#06d6a0" });
+          });
+          el.addEventListener("mouseleave", () => {
+            gsap.to(cursorInner, { scale: 1, duration: 0.3, borderColor: "#7c3aed" });
+          });
+        });
+      }
+
+      gsap.utils.toArray<HTMLElement>(".reveal-up").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".reveal-left").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          x: -60,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".reveal-right").forEach((el) => {
+        gsap.from(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          x: 60,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      });
+
+      gsap.utils.toArray<HTMLElement>(".stagger-children").forEach((parent) => {
+        gsap.from(parent.children, {
+          scrollTrigger: {
+            trigger: parent,
+            start: "top 85%",
+            toggleActions: "play none none none",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: "power3.out",
+        });
+      });
+    </script>
+  </body>
+</html>

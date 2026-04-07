@@ -1,0 +1,71 @@
+---
+import SectionTitle from "./UI/SectionTitle.astro";
+
+const certifications = [
+  {
+    title: "Couchbase Certified Associate Java Developer",
+    issuer: "Couchbase",
+    url: "https://www.credly.com/badges/d144eda2-b4d4-4a50-8cd8-1fff0e3bed31",
+    gradient: "linear-gradient(to right, #ef4444, #f97316)",
+  },
+  {
+    title: "Data Streaming Engineer Foundations",
+    issuer: "Confluent",
+    url: "https://certificates.confluent.io/038beefa-168f-41e3-ad07-4b0940cb3c4f",
+    gradient: "linear-gradient(to right, #3b82f6, #06b6d4)",
+  },
+  {
+    title: "Confluent Certified for Apache Kafka",
+    issuer: "Confluent",
+    url: "https://certificates.confluent.io/ae7ec5a1-7e52-4e77-8c4a-c5e160adfcb3",
+    gradient: "linear-gradient(to right, #2563eb, #6366f1)",
+  },
+  {
+    title: "Java (Basic) Certification",
+    issuer: "HackerRank",
+    url: "https://www.hackerrank.com/certificates/5a9b2520ebcf",
+    gradient: "linear-gradient(to right, #22c55e, #10b981)",
+  },
+];
+---
+
+<section id="certifications" class="section-padding bg-surface-100/50">
+  <div class="mx-auto max-w-7xl">
+    <SectionTitle title="Certifications" align="center" />
+
+    <div class="reveal-up grid gap-6 sm:grid-cols-2">
+      {
+        certifications.map((cert) => (
+          <a
+            href={cert.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group glass-card overflow-hidden transition-all duration-300 hover:-translate-y-2 glow-hover"
+            data-hover
+          >
+            <div class="h-1.5" style={`background: ${cert.gradient}`} />
+            <div class="p-6">
+              <div class="mb-4 flex items-start justify-between gap-3">
+                <div class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-surface-300/50">
+                  <svg class="h-6 w-6 text-primary-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+                  </svg>
+                </div>
+                <svg class="h-5 w-5 flex-shrink-0 text-slate-500 transition-colors group-hover:text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+
+              <h3 class="font-display text-lg font-bold text-white group-hover:text-primary-light transition-colors">
+                {cert.title}
+              </h3>
+              <p class="mt-1 text-sm text-slate-400">
+                Issued by <span class="text-slate-300">{cert.issuer}</span>
+              </p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>

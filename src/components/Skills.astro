@@ -1,0 +1,50 @@
+---
+import SectionTitle from "./UI/SectionTitle.astro";
+import { skillStack } from "../utils/SkillStack";
+---
+
+<section id="skills" class="section-padding bg-surface-100/50">
+  <div class="mx-auto max-w-7xl">
+    <SectionTitle title="Tech Stack" align="center" />
+
+    <div class="space-y-16">
+      {
+        skillStack.map((category) => (
+          <div class="reveal-up">
+            <div class="mb-8 flex items-center justify-center gap-3">
+              <div class="h-px flex-1 max-w-[100px] bg-gradient-to-r from-transparent to-surface-300" />
+              <h3 class="font-display text-xl font-semibold text-primary-light">
+                {category.title}
+              </h3>
+              <div class="h-px flex-1 max-w-[100px] bg-gradient-to-l from-transparent to-surface-300" />
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6">
+              {category.skills.map((skill) => (
+                <div
+                  class="group flex flex-col items-center gap-3 rounded-xl border border-transparent bg-surface-200/50 px-5 py-4 transition-all duration-300 hover:border-primary/30 hover:bg-surface-200 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1"
+                  data-hover
+                >
+                  <img
+                    src={skill.icon}
+                    alt={skill.name}
+                    class:list={[
+                      "h-10 w-10 transition-transform duration-300 group-hover:scale-110",
+                      { "brightness-0 invert": skill.invertOnDark },
+                    ]}
+                    loading="lazy"
+                    width="40"
+                    height="40"
+                  />
+                  <span class="text-sm font-medium text-slate-300 group-hover:text-white">
+                    {skill.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

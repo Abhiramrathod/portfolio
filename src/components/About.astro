@@ -1,0 +1,71 @@
+---
+import SectionTitle from "./UI/SectionTitle.astro";
+---
+
+<section id="about" class="section-padding">
+  <div class="mx-auto max-w-7xl">
+    <SectionTitle title="About Me" />
+
+    <div class="grid items-center gap-12 lg:grid-cols-2">
+      <div class="reveal-left">
+        <div class="relative mx-auto w-fit">
+          <div class="relative h-80 w-72 overflow-hidden rounded-2xl border-2 border-surface-300 md:h-96 md:w-80">
+            <img
+              src="/photo.png"
+              alt="Abhiram Rathod"
+              class="h-full w-full object-cover"
+              width="320"
+              height="384"
+            />
+          </div>
+          <div class="absolute -bottom-4 -right-4 -z-10 h-full w-full rounded-2xl border-2 border-primary/30"></div>
+        </div>
+      </div>
+
+      <div class="reveal-right space-y-6">
+        <h3 class="font-display text-2xl font-semibold text-white">
+          Hey there! <span class="inline-block origin-bottom-right">&#128075;</span>
+        </h3>
+
+        <p class="text-lg leading-relaxed text-slate-400">
+          I'm <span class="text-white font-medium">Abhiram</span>, a passionate
+          and adaptive Software Developer who enjoys solving real-world problems
+          through clean, scalable, and efficient code. I'm driven by continuous
+          learning and a deep curiosity for how technology can power innovation.
+        </p>
+
+        <p class="text-lg leading-relaxed text-slate-400">
+          I graduated from <span class="text-primary-light font-medium">NIT Tiruchirappalli</span>,
+          one of India's premier engineering institutes, and began my professional
+          journey with <span class="text-primary-light font-medium">Amdocs</span>
+          through campus placement. Since then, I've been contributing to the
+          RealTime Billing Product, working on complex systems in a
+          production-critical environment.
+        </p>
+
+        <p class="text-lg leading-relaxed text-slate-400">
+          At Amdocs, I've developed solid experience with Java, Spring Boot, and
+          Microservices Architecture, while expanding my skills across Kafka,
+          Couchbase, Kubernetes, REST APIs, and more. I'm always seeking
+          opportunities to build robust, distributed systems and continuously
+          level up my engineering craft.
+        </p>
+
+        <div class="flex flex-wrap gap-6 pt-4">
+          <div class="glass-card px-6 py-4 text-center">
+            <span class="block font-display text-3xl font-bold text-primary">1+</span>
+            <span class="text-sm text-slate-400">Year at Amdocs</span>
+          </div>
+          <div class="glass-card px-6 py-4 text-center">
+            <span class="block font-display text-3xl font-bold text-primary">NIT</span>
+            <span class="text-sm text-slate-400">Trichy '24</span>
+          </div>
+          <div class="glass-card px-6 py-4 text-center">
+            <span class="block font-display text-3xl font-bold text-primary">4</span>
+            <span class="text-sm text-slate-400">Certifications</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
